@@ -1,0 +1,20 @@
+(defun minmax (tree isMax)
+	(if (second tree)
+ 		(eval 
+ 			(set (first tree)
+ 			(if isMax
+  			(apply #'max (mapcar #'minmax (second tree)
+ 			(mapcar #' (lambda (x) nil) (second tree))))
+ 			(apply #'min (mapcar #'minmax (second tree)
+ 			(mapcar #' (lambda (x) t ) (second tree)))))
+ 			))
+ 	(eval (first tree)))
+)
+
+(setq x 11 y 12 z 13)
+; ; définition de l'arbre
+(set 'tree '(x ((y ((60 nil) (85 nil) (70 nil)))
+ (z ((51 nil) (67 nil) (78 nil) (90 nil) (84 nil) (32
+nil))))))
+;; appel à l'algorithme
+(minmax tree t)
